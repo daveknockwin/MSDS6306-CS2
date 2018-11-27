@@ -5,8 +5,8 @@ colnames(data2) <- c("Country","Code","Indicator","IndicatorCode","Value","Year"
 survial.percent.male <- data2[data2$Indicator == "Survival to age 65, male (% of cohort)",]
 literacy.youth.male <- data2[data2$Indicator == "Literacy rate, youth male (% of males ages 15-24)",]
 survival.v.litrate.raw <- merge(survial.percent.male, literacy.youth.male, by=c("Code", "Year"))
-survival.v.litrate <- survival.v.litrate.raw[c(1,2,3,6,11)]
-colnames(survival.v.litrate) <- c("Code","Year","Country","survival.percent","literate.rate")
+survival.v.litrate <- survival.v.litrate.raw[c(3,1,2,6,11)]
+colnames(survival.v.litrate) <- c("Country","Code","Year","survival.percent","literate.rate")
 survival.v.literate <- na.omit(survival.v.litrate)
 survival.v.literate$log.survival.percent <- log(survival.v.literate$survival.percent)
 survival.v.literate$log.literate.rate <- log(survival.v.literate$literate.rate)
