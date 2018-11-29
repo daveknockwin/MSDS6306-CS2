@@ -18,5 +18,16 @@ s.v.l.lm <- lm(log.survival.percent ~ log.literate.rate, data=survival.v.literat
 summary(s.v.l.lm)
 survival.v.literate$predicted <- predict(s.v.l.lm)
 survival.v.literate$residuals <- residuals(s.v.l.lm)
-
-
+s.v.l.m.res <- resid(s.v.l.lm)
+plot(survival.v.literate$log.literate.rate, s.v.l.m.res, ylab="Residuals",xlab="log.literate.rate", main="Residuals vs log of literate rate")
+s.v.l.m.stud <- rstudent(s.v.l.lm)
+hist(s.v.l.m.stud, freq=FALSE, main="Distribution of Studentized Residuals", xlab="Studentized Residuals")
+xfit <- seq(min(s.v.l.m.stud)-1,max(s.v.l.m.stud)+1,length=40)
+yfit <- dnorm(xfit)
+lines(xfit,yfit)
+par(mfrow=c(1,2))
+qqnorm(s.v.l.m.stud)
+qqline(s.v.l.m.stud)
+summary(s.v.l.lm)
+# $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)
+# About 49.5% of the variation in the log of Survival Rate is explained by the log of the Literate Rate.
