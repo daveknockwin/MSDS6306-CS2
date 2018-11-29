@@ -7,16 +7,16 @@ output:
     keep_md: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-```{r packages, echo=TRUE}
+
+
+```r
 library(reshape2)
 library(ggplot2)
 ```
 
-```{r dataload, echo=TRUE}
+
+```r
 # load data from file in the data directory
 data <- read.csv("./Data/API_17_DS2_en_csv_v2_10226244.csv", skip=4)
 # generate rows for values for each year
@@ -41,12 +41,16 @@ survival.v.literate$log.survival.percent <- log(survival.v.literate$survival.per
 survival.v.literate$log.literate.rate <- log(survival.v.literate$literate.rate)
 ```
 
-```{r plot, echo=TRUE}
+
+```r
 # plot surivival rate versus literate rate
 ggplot(survival.v.literate, aes(x=log.literate.rate, y=log.survival.percent)) + geom_point(shape=1) + geom_smooth(method=lm)
 ```
 
-```{r residuals, echo=TRUE}
+![](CS2_files/figure-html/plot-1.png)<!-- -->
+
+
+```r
 # generate linear model of survival rate vs literate rate
 s.v.l.lm <- lm(log.survival.percent ~ log.literate.rate, data=survival.v.literate)
 # generate residuals
@@ -55,20 +59,50 @@ s.v.l.m.res <- resid(s.v.l.lm)
 plot(survival.v.literate$log.literate.rate, s.v.l.m.res, ylab="Residuals",xlab="log.literate.rate", main="Residuals vs log of literate rate")
 ```
 
-```{r studentresiduals, echo=TRUE}
+![](CS2_files/figure-html/residuals-1.png)<!-- -->
+
+
+```r
 s.v.l.m.stud <- rstudent(s.v.l.lm)
 hist(s.v.l.m.stud, freq=FALSE, main="Distribution of Studentized Residuals", xlab="Studentized Residuals")
 xfit <- seq(min(s.v.l.m.stud)-1,max(s.v.l.m.stud)+1,length=40)
 yfit <- dnorm(xfit)
 lines(xfit,yfit)
 ```
-```{r qqplot, echo=TRUE}
+
+![](CS2_files/figure-html/studentresiduals-1.png)<!-- -->
+
+```r
 par(mfrow=c(1,2))
 qqnorm(s.v.l.m.stud)
 qqline(s.v.l.m.stud)
 ```
-```{r summary, echo=TRUE}
+
+![](CS2_files/figure-html/qqplot-1.png)<!-- -->
+
+```r
 summary(s.v.l.lm)
+```
+
+```
+## 
+## Call:
+## lm(formula = log.survival.percent ~ log.literate.rate, data = survival.v.literate)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.82460 -0.06257  0.02013  0.08422  0.79056 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)        0.12571    0.08567   1.467    0.142    
+## log.literate.rate  0.89354    0.01923  46.467   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1509 on 2203 degrees of freedom
+## Multiple R-squared:  0.495,	Adjusted R-squared:  0.4947 
+## F-statistic:  2159 on 1 and 2203 DF,  p-value: < 2.2e-16
 ```
 $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)$
 
