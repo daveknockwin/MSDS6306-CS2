@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r packages, echo=TRUE}
 library(reshape2)
 library(ggplot2)
+library(pander)
 ```
 
 ```{r dataload, echo=TRUE}
@@ -68,7 +69,7 @@ qqnorm(s.v.l.m.stud)
 qqline(s.v.l.m.stud)
 ```
 ```{r summary, echo=TRUE}
-summary(s.v.l.lm)
+pander(summary(s.v.l.lm))
 ```
 $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)$
 

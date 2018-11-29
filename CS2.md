@@ -13,6 +13,7 @@ output:
 ```r
 library(reshape2)
 library(ggplot2)
+library(pander)
 ```
 
 
@@ -81,29 +82,26 @@ qqline(s.v.l.m.stud)
 ![](CS2_files/figure-html/qqplot-1.png)<!-- -->
 
 ```r
-summary(s.v.l.lm)
+pander(summary(s.v.l.lm))
 ```
 
-```
-## 
-## Call:
-## lm(formula = log.survival.percent ~ log.literate.rate, data = survival.v.literate)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.82460 -0.06257  0.02013  0.08422  0.79056 
-## 
-## Coefficients:
-##                   Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)        0.12571    0.08567   1.467    0.142    
-## log.literate.rate  0.89354    0.01923  46.467   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.1509 on 2203 degrees of freedom
-## Multiple R-squared:  0.495,	Adjusted R-squared:  0.4947 
-## F-statistic:  2159 on 1 and 2203 DF,  p-value: < 2.2e-16
-```
+
+--------------------------------------------------------------------
+        &nbsp;           Estimate   Std. Error   t value   Pr(>|t|) 
+----------------------- ---------- ------------ --------- ----------
+    **(Intercept)**       0.1257     0.08567      1.467     0.1424  
+
+ **log.literate.rate**    0.8935     0.01923      46.47       0     
+--------------------------------------------------------------------
+
+
+-------------------------------------------------------------
+ Observations   Residual Std. Error   $R^2$   Adjusted $R^2$ 
+-------------- --------------------- ------- ----------------
+     2205             0.1509          0.495       0.4947     
+-------------------------------------------------------------
+
+Table: Fitting linear model: log.survival.percent ~ log.literate.rate
 $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)$
 
 About 49.5% of the variation in the log of Survival Rate is explained by the log of the Literate Rate.
