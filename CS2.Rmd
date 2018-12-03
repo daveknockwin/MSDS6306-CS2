@@ -15,6 +15,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(reshape2)
 library(ggplot2)
 library(pander)
+library(rcompanion)
+library(GGally)
+library(corrplot)
 ```
 
 ```{r dataload, echo=TRUE}
@@ -40,6 +43,13 @@ survival.v.literate <- na.omit(survival.v.literate)
 survival.v.literate$log.survival.percent <- log(survival.v.literate$survival.percent)
 # generate log of literate rate
 survival.v.literate$log.literate.rate <- log(survival.v.literate$literate.rate)
+
+summary(literacy.youth.male$Value)
+summary(survial.percent.male$Value)
+
+
+plotNormalHistogram(literacy.youth.male$Value)
+plotNormalHistogram(survial.percent.male$Value)
 ```
 
 ```{r plot, echo=TRUE}
@@ -114,5 +124,15 @@ corrplot(m, method = c('number'))
 fit <- lm(b~a+d+e, data = data3)
 
 summary(fit)
+
+summary(data3[c(6,11,16,21,26)])
+
+lapply(data3[c(6,11,16,21,26)], plotNormalHistogram)
+
 ```
+
+
+
+
+
 
