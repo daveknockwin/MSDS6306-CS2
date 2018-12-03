@@ -1,4 +1,4 @@
-﻿# MSDS6306-CS2
+# MSDS6306-CS2
 
 ## World Development Indicators
 
@@ -13,6 +13,11 @@ We found our data on the world bank website at: https://data.worldbank.org/indic
 For the purposes of our model, we will be looking at the following variables more closely: 
 
 •	Survival to age 65, male (% of cohort)
+
+•	Literacy rate, youth male (% of males ages 15-24)
+
+DELETE BELOW 
+
 
 •	Survival to age 65, female (% of cohort)
 
@@ -49,8 +54,6 @@ For the purposes of our model, we will be looking at the following variables mor
 •	Educational attainment, at least Bachelor's or equivalent, population 25+, male (%) (cumulative)
 
 •	Educational attainment, at least Bachelor's or equivalent, population 25+, female (%) (cumulative)
-
-•	Literacy rate, youth male (% of males ages 15-24)
 
 •	Literacy rate, youth (ages 15-24), gender parity index (GPI)
 
