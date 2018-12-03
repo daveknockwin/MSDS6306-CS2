@@ -104,7 +104,6 @@ explanatory_variables <- data3[c(6,11,16,21,26)]
 #visually 
 ggpairs(explanatory_variables)
 
-
 #complete data only
 #correlation of each feature and another
 m <- cor(explanatory_variables)
@@ -115,6 +114,5 @@ corrplot(m, method = c('number'))
 fit <- lm(b~a+d+e, data = data3)
 
 summary(fit)
-
 ```
 
