@@ -4,7 +4,7 @@
 
 ### Introduction
 
-Our world is becoming less poor and more healthy with every year. This is encouraging news, but we must also study potential causes for and hinderences to this phenomenon. 
+Our world is becoming less poor and more healthy with every year. This is encouraging news, but we must also study potential causes for and hindrances to this phenomenon. 
 
 ### Data
 
