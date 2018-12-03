@@ -58,11 +58,12 @@ For the purposes of our model, we will be looking at the following variables mor
 
 We have decided that these variables will show how the health of the population is potentially intertwined with its education and legislative moves to egalitarianism between the sexes. 
 
-*we might want to get another data set that ranks countries by health and wealth overall and use that as a response variable?*
+*A full codebook is found in Codebook.docx*
+
 
 ### Report: 
 
-### Results:
+Our report is located in CS2.Rmd 
 
 ### Group Contributions: 
 
