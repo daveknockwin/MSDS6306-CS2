@@ -87,8 +87,6 @@ female.participation <- data2[data2$IndicatorCode =="IC.FRM.FEMO.ZS",]
 
 female.manager <- data2[data2$IndicatorCode =="IC.FRM.FEMM.ZS",]
 
-
-
 data3 <- Reduce(function(x,y) merge(x = x, y = y, by = c("Code", "Year")), 
        list(mothers.postion.maternity, 
             female.life.expectancy,
@@ -100,8 +98,21 @@ data3 <- data3[complete.cases(data3),]
 
 names(data3)[c(6,11,16,21,26)] <- c('a','b','c','d','e')
 
+#MULTICOLINEARITY
+explanatory_variables <- data3[c(6,11,16,21,26)]
 
-fit <- lm(b~a+c+d+e, data = data3)
+#visually 
+ggpairs(explanatory_variables)
+
+
+#complete data only
+#correlation of each feature and another
+m <- cor(explanatory_variables)
+
+#plots correlation matrix
+corrplot(m, method = c('number'))
+
+fit <- lm(b~a+d+e, data = data3)
 
 summary(fit)
 
