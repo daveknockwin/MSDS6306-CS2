@@ -74,3 +74,36 @@ pander(summary(s.v.l.lm))
 $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)$
 
 About 49.5% of the variation in the log of Survival Rate is explained by the log of the Literate Rate.
+
+
+```{r summary of life expectancy}
+mothers.postion.maternity <- data2[data2$IndicatorCode == 'SG.MMR.LEVE.EP',]
+
+female.life.expectancy<- data2[data2$IndicatorCode == "SP.DYN.LE00.FE.IN",]
+
+male.life.expectancy<- data2[data2$IndicatorCode =="SP.DYN.LE00.MA.IN",]
+
+female.participation <- data2[data2$IndicatorCode =="IC.FRM.FEMO.ZS",]
+
+female.manager <- data2[data2$IndicatorCode =="IC.FRM.FEMM.ZS",]
+
+
+
+data3 <- Reduce(function(x,y) merge(x = x, y = y, by = c("Code", "Year")), 
+       list(mothers.postion.maternity, 
+            female.life.expectancy,
+            male.life.expectancy,
+            female.participation,
+            female.manager))
+
+data3 <- data3[complete.cases(data3),]
+
+names(data3)[c(6,11,16,21,26)] <- c('a','b','c','d','e')
+
+
+fit <- lm(b~a+c+d+e, data = data3)
+
+summary(fit)
+
+```
+
