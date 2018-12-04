@@ -43,19 +43,22 @@ survival.v.literate <- na.omit(survival.v.literate)
 survival.v.literate$log.survival.percent <- log(survival.v.literate$survival.percent)
 # generate log of literate rate
 survival.v.literate$log.literate.rate <- log(survival.v.literate$literate.rate)
+``` 
 
-summary(literacy.youth.male$Value)
-summary(survial.percent.male$Value)
-
-
+The variables used for linear regression at literacy rate in youth males (age 15-24) and the survival rate of males to age 65. A summary of those variables and their distribution among the sample are below.
+```{r variable-summaries}
+pander(summary(literacy.youth.male$Value))
 plotNormalHistogram(literacy.youth.male$Value)
+pander(summary(survial.percent.male$Value))
 plotNormalHistogram(survial.percent.male$Value)
 ```
 
+A plot of the log of the survival rate and the log of the literacy rate shows that the two variables have a linear correlation.
 ```{r plot, echo=TRUE}
 # plot surivival rate versus literate rate
 ggplot(survival.v.literate, aes(x=log.literate.rate, y=log.survival.percent)) + geom_point(shape=1) + geom_smooth(method=lm)
 ```
+
 
 ```{r residuals, echo=TRUE}
 # generate linear model of survival rate vs literate rate
@@ -82,6 +85,8 @@ qqline(s.v.l.m.stud)
 pander(summary(s.v.l.lm))
 ```
 $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)$
+
+The doubling of the literate rate if male youth results in a change of 85% increase in the mortality rate of males. 
 
 About 49.5% of the variation in the log of Survival Rate is explained by the log of the Literate Rate.
 

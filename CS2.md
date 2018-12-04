@@ -62,13 +62,15 @@ survival.v.literate$log.survival.percent <- log(survival.v.literate$survival.per
 # generate log of literate rate
 survival.v.literate$log.literate.rate <- log(survival.v.literate$literate.rate)
 
-summary(literacy.youth.male$Value)
+pander(summary(literacy.youth.male$Value))
 ```
 
-```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-##   22.38   78.13   89.94   86.92   97.85  100.00   13099
-```
+
+-----------------------------------------------------------
+ Min.    1st Qu.   Median   Mean    3rd Qu.   Max.   NA's  
+------- --------- -------- ------- --------- ------ -------
+ 22.38    78.13    89.94    86.92    97.85    100    13099 
+-----------------------------------------------------------
 
 ```r
 summary(survial.percent.male$Value)
