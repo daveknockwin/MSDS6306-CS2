@@ -86,7 +86,7 @@ pander(summary(s.v.l.lm))
 ```
 $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)$
 
-The doubling of the literate rate if male youth results in a change of 85% increase in the mortality rate of males. 
+The doubling of the literate rate if male youth results in a change of 85% increase in the rate of males surviving to 65. 
 
 About 49.5% of the variation in the log of Survival Rate is explained by the log of the Literate Rate.
 
