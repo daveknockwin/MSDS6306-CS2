@@ -61,7 +61,11 @@ survival.v.literate <- na.omit(survival.v.literate)
 survival.v.literate$log.survival.percent <- log(survival.v.literate$survival.percent)
 # generate log of literate rate
 survival.v.literate$log.literate.rate <- log(survival.v.literate$literate.rate)
+```
 
+The variables used for linear regression at literacy rate in youth males (age 15-24) and the survival rate of males to age 65. A summary of those variables and their distribution among the sample are below.
+
+```r
 pander(summary(literacy.youth.male$Value))
 ```
 
@@ -73,26 +77,29 @@ pander(summary(literacy.youth.male$Value))
 -----------------------------------------------------------
 
 ```r
-summary(survial.percent.male$Value)
-```
-
-```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-##   1.477  47.549  60.865  58.875  70.612  90.404    1632
-```
-
-```r
 plotNormalHistogram(literacy.youth.male$Value)
 ```
 
-![](CS2_files/figure-html/dataload-1.png)<!-- -->
+![](CS2_files/figure-html/variable-summaries-1.png)<!-- -->
+
+```r
+pander(summary(survial.percent.male$Value))
+```
+
+
+----------------------------------------------------------
+ Min.    1st Qu.   Median   Mean    3rd Qu.   Max.   NA's 
+------- --------- -------- ------- --------- ------ ------
+ 1.477    47.55    60.86    58.88    70.61    90.4   1632 
+----------------------------------------------------------
 
 ```r
 plotNormalHistogram(survial.percent.male$Value)
 ```
 
-![](CS2_files/figure-html/dataload-2.png)<!-- -->
+![](CS2_files/figure-html/variable-summaries-2.png)<!-- -->
 
+A plot of the log of the survival rate and the log of the literacy rate shows that the two variables have a linear correlation.
 
 ```r
 # plot surivival rate versus literate rate
@@ -100,6 +107,7 @@ ggplot(survival.v.literate, aes(x=log.literate.rate, y=log.survival.percent)) + 
 ```
 
 ![](CS2_files/figure-html/plot-1.png)<!-- -->
+
 
 
 ```r
@@ -154,6 +162,8 @@ pander(summary(s.v.l.lm))
 
 Table: Fitting linear model: log.survival.percent ~ log.literate.rate
 $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)$
+
+The doubling of the literate rate if male youth results in a change of 85% increase in the rate of males surviving to 65. 
 
 About 49.5% of the variation in the log of Survival Rate is explained by the log of the Literate Rate.
 
