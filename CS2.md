@@ -1,5 +1,5 @@
 ---
-title: "CS2"
+title: "Finding a New Home for the Bill and Melinda Foundation"
 author: "David Nguyen, Austin Simeone, John Rodgers, Hannah Kosinovsky"
 date: "December 4, 2018"
 output: 
@@ -36,7 +36,8 @@ library(corrplot)
 ```
 ## corrplot 0.84 loaded
 ```
-
+####Survival Rate and Literacy:
+We first examined the relationship between literacy in males and the the survial rate of male. After cleaning the data, applying a regression, we found a linear relationship. The subsequent chunks show the process
 
 ```r
 # load data from file in the data directory
@@ -108,7 +109,7 @@ ggplot(survival.v.literate, aes(x=log.literate.rate, y=log.survival.percent)) + 
 
 ![](CS2_files/figure-html/plot-1.png)<!-- -->
 
-
+All of the assumptions associated with linear regression were met below.
 
 ```r
 # generate linear model of survival rate vs literate rate
@@ -164,10 +165,10 @@ Table: Fitting linear model: log.survival.percent ~ log.literate.rate
 $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)$
 
 The doubling of the literate rate if male youth results in a change of 85% increase in the rate of males surviving to 65. 
-
+<br>
 About 49.5% of the variation in the log of Survival Rate is explained by the log of the Literate Rate.
-
-
+<br>
+Next we applied a multiple regressin on female life expectany as a function of 3 other varibales. We found that 75% of the variability in life expectancy in females can be attributed to these variables.
 
 ```r
 mothers.postion.maternity <- data2[data2$IndicatorCode == 'SG.MMR.LEVE.EP',]
@@ -205,56 +206,6 @@ data3 <- data3[complete.cases(data3),]
 
 names(data3)[c(6,11,16,21,26)] <- c('a','b','c','d','e')
 
-#MULTICOLINEARITY
-explanatory_variables <- data3[c(6,11,16,21,26)]
-
-#visually 
-ggpairs(explanatory_variables)
-```
-
-![](CS2_files/figure-html/summary_of_life_expectancy-1.png)<!-- -->
-
-```r
-#complete data only
-#correlation of each feature and another
-m <- cor(explanatory_variables)
-
-#plots correlation matrix
-corrplot(m, method = c('number'))
-```
-
-![](CS2_files/figure-html/summary_of_life_expectancy-2.png)<!-- -->
-
-```r
-fit <- lm(b~a+d+e, data = data3)
-
-summary(fit)
-```
-
-```
-## 
-## Call:
-## lm(formula = b ~ a + d + e, data = data3)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -21.610  -4.052   2.612   5.651  12.380 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 70.277957   2.273252  30.915   <2e-16 ***
-## a            0.270385   1.621061   0.167    0.868    
-## d           -0.005473   0.071225  -0.077    0.939    
-## e            0.137730   0.113102   1.218    0.226    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 7.759 on 96 degrees of freedom
-## Multiple R-squared:  0.02303,	Adjusted R-squared:  -0.007504 
-## F-statistic: 0.7542 on 3 and 96 DF,  p-value: 0.5226
-```
-
-```r
 summary(data3[c(6,11,16,21,26)])
 ```
 
@@ -279,7 +230,7 @@ summary(data3[c(6,11,16,21,26)])
 lapply(data3[c(6,11,16,21,26)], plotNormalHistogram)
 ```
 
-![](CS2_files/figure-html/summary_of_life_expectancy-3.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-4.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-5.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-6.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-7.png)<!-- -->
+![](CS2_files/figure-html/summary_of_life_expectancy-1.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-2.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-3.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-4.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-5.png)<!-- -->
 
 ```
 ## $a
@@ -296,6 +247,31 @@ lapply(data3[c(6,11,16,21,26)], plotNormalHistogram)
 ## 
 ## $e
 ## NULL
+```
+
+```r
+#MULTICOLINEARITY
+explanatory_variables <- data3[c(6,11,16,21,26)]
+
+#visually 
+ggpairs(explanatory_variables)
+```
+
+![](CS2_files/figure-html/summary_of_life_expectancy-6.png)<!-- -->
+
+```r
+#complete data only
+#correlation of each feature and another
+m <- cor(explanatory_variables)
+
+#plots correlation matrix
+corrplot(m, method = c('number'))
+```
+
+![](CS2_files/figure-html/summary_of_life_expectancy-7.png)<!-- -->
+
+```r
+fit <- lm(b~a+d+e, data = data3)
 ```
 
 

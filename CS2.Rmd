@@ -1,5 +1,5 @@
 ---
-title: "CS2"
+title: "Finding a New Home for the Bill and Melinda Foundation"
 author: "David Nguyen, Austin Simeone, John Rodgers, Hannah Kosinovsky"
 date: "December 4, 2018"
 output: 
@@ -19,7 +19,8 @@ library(rcompanion)
 library(GGally)
 library(corrplot)
 ```
-
+####Survival Rate and Literacy:
+We first examined the relationship between literacy in males and the the survial rate of male. After cleaning the data, applying a regression, we found a linear relationship. The subsequent chunks show the process
 ```{r dataload, echo=TRUE}
 # load data from file in the data directory
 data <- read.csv("./Data/API_17_DS2_en_csv_v2_10226244.csv", skip=4)
@@ -59,7 +60,7 @@ A plot of the log of the survival rate and the log of the literacy rate shows th
 ggplot(survival.v.literate, aes(x=log.literate.rate, y=log.survival.percent)) + geom_point(shape=1) + geom_smooth(method=lm)
 ```
 
-
+All of the assumptions associated with linear regression were met below.
 ```{r residuals, echo=TRUE}
 # generate linear model of survival rate vs literate rate
 s.v.l.lm <- lm(log.survival.percent ~ log.literate.rate, data=survival.v.literate)
@@ -87,10 +88,10 @@ pander(summary(s.v.l.lm))
 $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Literate Rate)$
 
 The doubling of the literate rate if male youth results in a change of 85% increase in the rate of males surviving to 65. 
-
+<br>
 About 49.5% of the variation in the log of Survival Rate is explained by the log of the Literate Rate.
-
-
+<br>
+Next we applied a multiple regressin on female life expectany as a function of 3 other varibales. We found that 75% of the variability in life expectancy in females can be attributed to these variables.
 ```{r summary_of_life_expectancy}
 mothers.postion.maternity <- data2[data2$IndicatorCode == 'SG.MMR.LEVE.EP',]
 
@@ -113,6 +114,10 @@ data3 <- data3[complete.cases(data3),]
 
 names(data3)[c(6,11,16,21,26)] <- c('a','b','c','d','e')
 
+summary(data3[c(6,11,16,21,26)])
+
+lapply(data3[c(6,11,16,21,26)], plotNormalHistogram)
+
 #MULTICOLINEARITY
 explanatory_variables <- data3[c(6,11,16,21,26)]
 
@@ -127,12 +132,6 @@ m <- cor(explanatory_variables)
 corrplot(m, method = c('number'))
 
 fit <- lm(b~a+d+e, data = data3)
-
-summary(fit)
-
-summary(data3[c(6,11,16,21,26)])
-
-lapply(data3[c(6,11,16,21,26)], plotNormalHistogram)
 
 ```
 
