@@ -16,6 +16,13 @@ For the purposes of our model, we will be looking at the following variables mor
 
 •	Literacy rate, youth male (% of males ages 15-24)
 
+•	Life Expectancy of Females
+
+•	Percent of Females in Managerial Position
+
+•	Percent of Females in Ownership Position
+
+
 We have decided that these variables will show how the health of the population is potentially intertwined with its education and legislative moves to egalitarianism between the sexes. 
 
 *A full codebook is found in Codebook.docx*
