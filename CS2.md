@@ -200,7 +200,7 @@ explanatory_variables <- data3[c(6,11,16,21,26)]
 ggpairs(explanatory_variables)
 ```
 
-![](CS2_files/figure-html/summary of life expectancy-1.png)<!-- -->
+![](CS2_files/figure-html/summary_of_life_expectancy-1.png)<!-- -->
 
 ```r
 #complete data only
@@ -211,7 +211,7 @@ m <- cor(explanatory_variables)
 corrplot(m, method = c('number'))
 ```
 
-![](CS2_files/figure-html/summary of life expectancy-2.png)<!-- -->
+![](CS2_files/figure-html/summary_of_life_expectancy-2.png)<!-- -->
 
 ```r
 fit <- lm(b~a+d+e, data = data3)
@@ -267,7 +267,7 @@ summary(data3[c(6,11,16,21,26)])
 lapply(data3[c(6,11,16,21,26)], plotNormalHistogram)
 ```
 
-![](CS2_files/figure-html/summary of life expectancy-3.png)<!-- -->![](CS2_files/figure-html/summary of life expectancy-4.png)<!-- -->![](CS2_files/figure-html/summary of life expectancy-5.png)<!-- -->![](CS2_files/figure-html/summary of life expectancy-6.png)<!-- -->![](CS2_files/figure-html/summary of life expectancy-7.png)<!-- -->
+![](CS2_files/figure-html/summary_of_life_expectancy-3.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-4.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-5.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-6.png)<!-- -->![](CS2_files/figure-html/summary_of_life_expectancy-7.png)<!-- -->
 
 ```
 ## $a

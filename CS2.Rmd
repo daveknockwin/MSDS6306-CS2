@@ -86,7 +86,7 @@ $\hat{\mu}(log(Survival Percent)|log(Literate Rate)) = 0.126 + 0.894 * log(Liter
 About 49.5% of the variation in the log of Survival Rate is explained by the log of the Literate Rate.
 
 
-```{r summary of life expectancy}
+```{r summary_of_life_expectancy}
 mothers.postion.maternity <- data2[data2$IndicatorCode == 'SG.MMR.LEVE.EP',]
 
 female.life.expectancy<- data2[data2$IndicatorCode == "SP.DYN.LE00.FE.IN",]
